@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>知识卡包 - 学习应用</title>
+<link rel="stylesheet" href="style.css">
+<script>window.__CARD_DATA__ = __DATA__;</script>
+</head>
+<body>
+
+<!-- 顶部导航 -->
+<header class="topbar">
+  <div class="topbar-left">
+    <h1 class="topbar-title" id="appTitle">📚 知识卡包</h1>
+    <nav class="tab-nav" id="tabNav">
+      <button class="tab-btn active" data-view="learn">📖 学习</button>
+      <button class="tab-btn" data-view="flashcard">🎴 背诵</button>
+      <button class="tab-btn" data-view="review">📅 复习</button>
+    </nav>
+  </div>
+  <div class="topbar-right">
+    <button class="btn-icon" id="btnTodayPlan" title="今日计划">📋</button>
+    <button class="btn-study-end" id="btnEndStudy">结束学习，开始背诵</button>
+    <button class="btn-icon" id="btnReset" title="恢复默认顺序">↺</button>
+  </div>
+</header>
+
+<!-- ============ 学习视图 ============ -->
+<div class="view active" id="viewLearn">
+<div class="main-layout">
+
+  <!-- 左侧边栏：目录 -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <span>📑 目录</span>
+      <span class="card-count" id="cardCount">0 张</span>
+    </div>
+    <div class="sidebar-groups" id="sidebarGroups">
+      <!-- 由 JS 渲染 -->
+    </div>
+    <div class="sidebar-footer">
+      <button class="btn-small" id="btnAddGroup">+ 新建分组</button>
+    </div>
+  </aside>
+
+  <!-- 主内容区 -->
+  <main class="content" id="mainContent">
+    <div class="content-placeholder" id="contentPlaceholder">
+      <p>选择左侧卡片开始学习</p>
+    </div>
+    <div class="content-card" id="contentCard" style="display:none;">
+      <!-- 卡片标题 -->
+      <h2 class="card-title" id="cardTitle"></h2>
+
+      <!-- 四段折叠面板（含创作编辑区，由 JS 渲染） -->
+      <div id="cardSections"></div>
+    </div>
+  </main>
+
+  <!-- 右侧栏 -->
+  <aside class="rightbar" id="rightbar">
+    <div class="rightbar-mode" id="rightbarMode">
+      <span class="mode-badge" id="modeBadge">📝 笔记模式</span>
+      <select class="reconstruct-select" id="reconstructSelect" style="display:none;">
+        <option value="note">📝 笔记模式</option>
+        <option value="reorder">🔀 概念重组</option>
+        <option value="fill-blank">✏️ 概念填空</option>
+      </select>
+    </div>
+
+    <!-- 概念重组区域 -->
+    <div class="reorder-area" id="reorderArea" style="display:none;">
+      <p class="reorder-hint" id="reorderHint">将概念拖到正确位置</p>
+      <div class="reorder-slots" id="reorderSlots"></div>
+      <div class="reorder-blocks" id="reorderBlocks"></div>
+      <button class="btn-primary" id="btnCheckReorder">提交比对</button>
+      <div class="reorder-result" id="reorderResult"></div>
+    </div>
+
+    <!-- 概念填空区域 -->
+    <div class="fill-area" id="fillArea" style="display:none;">
+      <div class="fill-progress" id="fillProgress">第 1/3 题</div>
+      <div class="fill-sentence" id="fillSentence"></div>
+      <div class="fill-result" id="fillResult"></div>
+      <div class="fill-nav">
+        <button class="btn-secondary" id="fillPrev" disabled>← 上一题</button>
+        <button class="btn-primary" id="fillSubmit" style="flex:1;">提交</button>
+        <button class="btn-secondary" id="fillNext" disabled>下一题 →</button>
+      </div>
+    </div>
+
+    <!-- AI辅导入口 -->
+    <div class="ai-help">
+      <button class="btn-ai" id="btnAskAI">💬 在 Trae 中提问</button>
+    </div>
+  </aside>
+</div>
+</div>
+
+<!-- ============ 背诵视图 ============ -->
+<div class="view" id="viewFlashcard">
+  <div class="flashcard-view" id="flashcardView">
+    <!-- 由 JS 渲染 -->
+  </div>
+</div>
+
+<!-- ============ 复习视图 ============ -->
+<div class="view" id="viewReview">
+  <div class="review-view" id="reviewView">
+    <!-- 由 JS 渲染 -->
+  </div>
+</div>
+
+<!-- ============ 今日计划模态框 ============ -->
+<div class="modal-overlay" id="todayPlanModal">
+  <div class="modal-box modal-wide">
+    <h2>📋 今日计划 — 智能推荐</h2>
+    <p>自由勾选今天要学的卡片，系统会根据知识接口关联为你推荐。</p>
+    <div id="todayPlanList" class="today-plan-list">
+      <!-- 由 JS 渲染 -->
+    </div>
+    <div class="today-plan-summary" id="todayPlanSummary">
+      已选 0 张，0 字 / 配额 <span id="todayPlanQuota">500</span> 字
+    </div>
+    <div id="todayPlanQuotaBar" class="today-plan-quota-bar">
+      <span>每日字数配额：</span>
+      <button class="quota-btn" data-value="200">200</button>
+      <button class="quota-btn active" data-value="500">500</button>
+      <button class="quota-btn" data-value="1000">1000</button>
+      <button class="quota-btn" data-value="3000">3000</button>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-secondary" id="todayPlanCancel">取消</button>
+      <button class="btn-primary" id="todayPlanConfirm" disabled>开始背诵</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 结束学习确认模态框 ============ -->
+<div class="modal-overlay" id="endStudyModal">
+  <div class="modal-box">
+    <h2>📖 结束学习</h2>
+    <p>同意后将进入背诵模式，学习视图中的卡片将无法打开。</p>
+    <p style="color:#dc2626;font-size:13px;">⚠ 请确保今日计划已设置完毕</p>
+    <div class="modal-actions" style="margin-top:16px;">
+      <button class="btn-secondary" id="endStudyCancel">我再看看</button>
+      <button class="btn-primary" id="endStudyConfirm" style="background:#16a34a;">同意，进入背诵</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 关键词编辑模态框 ============ -->
+<div class="modal-overlay" id="keywordsModal">
+  <div class="modal-box">
+    <h2>✏️ 编辑关键词</h2>
+    <div id="keywordsEditList" class="keywords-edit-list">
+      <!-- 由 JS 渲染 -->
+    </div>
+    <div style="margin-top:8px;">
+      <button class="btn-small" id="keywordsAddBtn">+ 添加关键词</button>
+    </div>
+    <div class="modal-actions" style="margin-top:12px;">
+      <button class="btn-secondary" id="keywordsCancel">取消</button>
+      <button class="btn-primary" id="keywordsSave">保存</button>
+    </div>
+  </div>
+</div>
+
+<!-- 底部检测入口 -->
+<footer class="bottom-bar">
+  <span class="bottom-hint">📝 下一版将支持检测题和批改反馈</span>
+</footer>
+
+<script src="state.js"></script>
+<script src="sidebar.js"></script>
+<script src="card-view.js"></script>
+<script src="flashcard.js"></script>
+<script src="plan.js"></script>
+<script src="reorder.js"></script>
+<script src="fill-blank.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

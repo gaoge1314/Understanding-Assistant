@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.venv/
+venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 用户数据（不追踪具体内容，但保留目录）
+input/参考资料/*
+input/大纲/*
+!input/参考资料/.gitkeep
+!input/大纲/.gitkeep
+
+# 自动生成的输出
+output/json/*
+output/markdown/*
+output/knowledge/
+output/processed/
+!output/json/.gitkeep
+!output/markdown/.gitkeep
+
+# 示例输出（追踪）
+!output/card-app/灾害学/
+!output/json/灾害学_v5.json
+!output/markdown/灾害学_理解路径卡包.md
+
+# 临时文件
+*临时/
+test_*
