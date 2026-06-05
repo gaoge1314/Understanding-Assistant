@@ -2,7 +2,7 @@
   "subject": "灾害学",
   "source_file": "C:\\Users\\12977\\Desktop\\jiyikapian\\output\\markdown\\灾害学_理解路径卡包.md",
   "generated_at": "2026-06-03 08:26:48",
-  "version": 5,
+  "version": 14,
   "all_knowledge_titles": [
     "灾害系统",
     "灾害系统动力学机制",
@@ -61,10 +61,87 @@
         "hierarchy": null,
         "comparison_tables": []
       },
-      "knowledge_interfaces": [
-        "→ 灾害系统动力学机制：系统各要素的动态关系",
-        "→ 灾害特征：系统外在表现的五个维度"
-      ]
+      "relations": [
+        {
+          "targetId": "灾害系统动力学机制",
+          "type": "expand",
+          "label": "灾害系统包含动力学机制描述其内部耦合关系",
+          "proof": {
+            "shared_entities": [
+              "灾害系统"
+            ],
+            "intermediate_concepts": [
+              "系统动力学机制"
+            ],
+            "reasoning": "灾害系统由孕灾环境、致灾因子、承灾体组成，动力学机制定量描述其稳定性、风险性、脆弱性的耦合，是灾害系统的内在机理。"
+          }
+        },
+        {
+          "targetId": "灾害链",
+          "type": "expand",
+          "label": "灾害系统包含灾害链作为其连锁反应形式",
+          "proof": {
+            "shared_entities": [
+              "灾害系统"
+            ],
+            "intermediate_concepts": [
+              "灾害系统组成"
+            ],
+            "reasoning": "灾害链是灾害系统内一灾引发多灾的连锁现象，属于灾害系统的一种组成形式。"
+          }
+        },
+        {
+          "targetId": "灾害研究的信息反馈原理",
+          "type": "expand",
+          "label": "信息反馈原理用于研究灾害系统动态行为",
+          "proof": {
+            "shared_entities": [
+              "灾害系统"
+            ],
+            "intermediate_concepts": [
+              "系统动力学机制"
+            ],
+            "reasoning": "灾害系统作为复杂系统，其演化受反馈机制控制，信息反馈原理是分析灾害系统动力学的重要方法。"
+          }
+        },
+        {
+          "targetId": "灾害的形成机制",
+          "type": "expand",
+          "label": "灾害形成机制是灾害系统的核心过程",
+          "proof": {
+            "shared_entities": [
+              "灾害系统"
+            ],
+            "intermediate_concepts": [
+              "系统动力学机制"
+            ],
+            "reasoning": "灾害的形成机制包括孕灾和成灾过程，描述了灾害系统如何由要素相互作用产生灾害。"
+          }
+        },
+        {
+          "targetId": "灾害发展过程的5个代表性机理",
+          "type": "apply",
+          "label": "灾害系统的理论应用于具体发展机理",
+          "proof": {
+            "shared_entities": [
+              "灾害系统"
+            ],
+            "intermediate_concepts": [
+              "系统动力学机制",
+              "灾害形成过程"
+            ],
+            "reasoning": "灾害发展过程的5个机理（转化、蔓延等）是灾害系统动力学在时间上的具体表现。"
+          }
+        }
+      ],
+      "semantic_profile": {
+        "core_terms": [
+          "灾害系统组成",
+          "系统动力学机制"
+        ],
+        "function_tag": "structural_model",
+        "abstract": "灾害系统由孕灾环境、致灾因子、承灾体与灾情组成"
+      }
     },
     {
       "title": "灾害系统动力学机制",
@@ -96,10 +173,73 @@
         "hierarchy": null,
         "comparison_tables": []
       },
-      "knowledge_interfaces": [
-        "→ 灾害系统：动力学是系统四要素的动态分析",
-        "→ 灾害形成机制：机制是动力学的核心组成部分"
-      ]
+      "relations": [
+        {
+          "targetId": "灾害链",
+          "type": "expand",
+          "label": "动力学机制解释灾害链的连锁动力",
+          "proof": {
+            "shared_entities": [
+              "灾害系统动力学机制"
+            ],
+            "intermediate_concepts": [
+              "灾害系统组成"
+            ],
+            "reasoning": "灾害链的形成依赖于系统内各要素的相互作用，动力学机制揭示了灾害链的驱动规律。"
+          }
+        },
+        {
+          "targetId": "灾害研究的信息反馈原理",
+          "type": "expand",
+          "label": "信息反馈原理是动力学机制的分析工具",
+          "proof": {
+            "shared_entities": [
+              "灾害系统动力学机制"
+            ],
+            "intermediate_concepts": [
+              "系统动力学机制"
+            ],
+            "reasoning": "动力学机制通过反馈机制实现系统调节，信息反馈原理提供了建模和解释方法。"
+          }
+        },
+        {
+          "targetId": "灾害的形成机制",
+          "type": "expand",
+          "label": "形成机制是动力学机制的过程化表达",
+          "proof": {
+            "shared_entities": [
+              "灾害系统动力学机制"
+            ],
+            "intermediate_concepts": [
+              "系统动力学机制"
+            ],
+            "reasoning": "动力学机制强调函数关系，形成机制则具体描述孕灾和成灾的流程。"
+          }
+        },
+        {
+          "targetId": "灾害发展过程的5个代表性机理",
+          "type": "apply",
+          "label": "动力学机制应用于发展过程分析",
+          "proof": {
+            "shared_entities": [
+              "灾害系统动力学机制"
+            ],
+            "intermediate_concepts": [
+              "系统动力学机制",
+              "灾害形成过程"
+            ],
+            "reasoning": "5个机理是动力学机制在灾害演变不同阶段的体现。"
+          }
+        }
+      ],
+      "semantic_profile": {
+        "core_terms": [
+          "灾害系统组成",
+          "系统动力学机制"
+        ],
+        "function_tag": "mechanism_description",
+        "abstract": "动力学机制描述稳定性、风险性、脆弱性的耦合"
+      }
     },
     {
       "title": "灾害特征",
@@ -131,10 +271,14 @@
         "hierarchy": null,
         "comparison_tables": []
       },
-      "knowledge_interfaces": [
-        "→ 灾害系统：特征是系统的综合外在表现",
-        "→ 灾害系统动力学机制：三性特征对应动力学的三个函数"
-      ]
+      "relations": [],
+      "semantic_profile": {
+        "core_terms": [
+          "灾害特征属性"
+        ],
+        "function_tag": "structural_model",
+        "abstract": "从结构、属性、稳定性等五个维度刻画灾害系统"
+      }
     },
     {
       "title": "灾害链",
@@ -167,10 +311,102 @@
         "hierarchy": null,
         "comparison_tables": []
       },
-      "knowledge_interfaces": [
-        "→ Na-tech事件：自然灾害引发技术事故是灾害链的特例",
-        "→ 应对灾害链的策略：断链、削弱、转移、避让、接受"
-      ]
+      "relations": [
+        {
+          "targetId": "灾害研究的信息反馈原理",
+          "type": "apply",
+          "label": "信息反馈原理可用于灾害链的传播分析",
+          "proof": {
+            "shared_entities": [
+              "灾害链"
+            ],
+            "intermediate_concepts": [
+              "灾害系统组成",
+              "系统动力学机制"
+            ],
+            "reasoning": "灾害链的连锁反应中存在正负反馈，信息反馈原理帮助理解其放大或衰减机制。"
+          }
+        },
+        {
+          "targetId": "灾害群、灾害链、灾害遭遇的异同",
+          "type": "expand",
+          "label": "灾害链与灾害群等概念对比",
+          "proof": {
+            "shared_entities": [
+              "灾害链"
+            ],
+            "intermediate_concepts": [
+              "灾害链与群"
+            ],
+            "reasoning": "该卡片专门辨析灾害链与其他聚集模式的异同，属于同一主题下的深化。"
+          }
+        },
+        {
+          "targetId": "灾害的形成机制",
+          "type": "apply",
+          "label": "形成机制解释灾害链的触发与演化",
+          "proof": {
+            "shared_entities": [
+              "灾害链"
+            ],
+            "intermediate_concepts": [
+              "灾害系统组成",
+              "系统动力学机制"
+            ],
+            "reasoning": "灾害链的形成是形成机制中孕灾和成灾过程的特殊连锁情况。"
+          }
+        },
+        {
+          "targetId": "应对灾害链的策略",
+          "type": "expand",
+          "label": "灾害链的应对策略是其实践延伸",
+          "proof": {
+            "shared_entities": [
+              "灾害链"
+            ],
+            "intermediate_concepts": [
+              "灾害链与群"
+            ],
+            "reasoning": "应对策略（断链、削弱等）直接针对灾害链的连锁特征。"
+          }
+        },
+        {
+          "targetId": "构成灾害链的山地灾害的同一性",
+          "type": "expand",
+          "label": "山地灾害同一性是灾害链的实例分析",
+          "proof": {
+            "shared_entities": [
+              "灾害链"
+            ],
+            "intermediate_concepts": [
+              "灾害链与群"
+            ],
+            "reasoning": "该卡片探讨山地灾害在能量、物质条件上的共性，为灾害链形成提供基础。"
+          }
+        },
+        {
+          "targetId": "构成灾害链的山地灾害的差异性",
+          "type": "expand",
+          "label": "山地灾害差异性是灾害链多样性的原因",
+          "proof": {
+            "shared_entities": [
+              "灾害链"
+            ],
+            "intermediate_concepts": [
+              "灾害链与群"
+            ],
+            "reasoning": "差异性导致灾害链中不同灾害类型的区别。"
+          }
+        }
+      ],
+      "semantic_profile": {
+        "core_terms": [
+          "灾害系统组成",
+          "灾害链与群"
+        ],
+        "function_tag": "mechanism_description",
+        "abstract": "一灾引发多灾的连锁反应，分为并发性和串发性"
+      }
     },
     {
       "title": "Na-tech事件",
@@ -202,10 +438,43 @@
         "hierarchy": null,
         "comparison_tables": []
       },
-      "knowledge_interfaces": [
-        "→ 灾害链：Na-tech是灾害链在技术领域的特例",
-        "→ Na-tech事件的演化规律：触发-耦合-扩散-衰减四阶段"
-      ]
+      "relations": [
+        {
+          "targetId": "Na-tech事件的演化规律",
+          "type": "expand",
+          "label": "演化规律是Na-tech事件的过程描述",
+          "proof": {
+            "shared_entities": [
+              "Na-tech事件"
+            ],
+            "intermediate_concepts": [
+              "Na-tech事件"
+            ],
+            "reasoning": "演化规律具体阐述Na-tech事件的四阶段递进规律。"
+          }
+        },
+        {
+          "targetId": "Na-tech事件定量风险评估的流程",
+          "type": "expand",
+          "label": "风险评估流程是Na-tech事件的管理方法",
+          "proof": {
+            "shared_entities": [
+              "Na-tech事件"
+            ],
+            "intermediate_concepts": [
+              "Na-tech事件"
+            ],
+            "reasoning": "定量风险评估流程提供了识别、分析和评估Na-tech事件风险的具体步骤。"
+          }
+        }
+      ],
+      "semantic_profile": {
+        "core_terms": [
+          "Na-tech事件"
+        ],
+        "function_tag": "mechanism_description",
+        "abstract": "自然灾害引发的化工技术事故"
+      }
     },
     {
       "title": "多米诺效应",
@@ -238,10 +507,59 @@
         "hierarchy": null,
         "comparison_tables": []
       },
-      "knowledge_interfaces": [
-        "→ 化工多米诺效应分析流程：如何系统评估多米诺风险",
-        "→ 多米诺效应的机理分析：扩展因子的深入分析"
-      ]
+      "relations": [
+        {
+          "targetId": "化工多米诺效应分析的一般流程",
+          "type": "apply",
+          "label": "多米诺效应理论指导化工流程分析",
+          "proof": {
+            "shared_entities": [
+              "多米诺效应"
+            ],
+            "intermediate_concepts": [
+              "多米诺效应",
+              "化工多米诺分析流程"
+            ],
+            "reasoning": "化工多米诺分析流程是多米诺效应在化工领域的应用。"
+          }
+        },
+        {
+          "targetId": "多米诺效应的机理分析",
+          "type": "expand",
+          "label": "机理分析详细解释多米诺效应的内在机制",
+          "proof": {
+            "shared_entities": [
+              "多米诺效应"
+            ],
+            "intermediate_concepts": [
+              "多米诺效应"
+            ],
+            "reasoning": "该卡片深入分析多米诺效应的构成要素、扩展因子和扩展模式。"
+          }
+        },
+        {
+          "targetId": "泄漏源方案优选的一般顺序",
+          "type": "apply",
+          "label": "泄漏源优选顺序是多米诺效应控制的实践",
+          "proof": {
+            "shared_entities": [
+              "多米诺效应"
+            ],
+            "intermediate_concepts": [
+              "多米诺效应",
+              "化工多米诺分析流程"
+            ],
+            "reasoning": "泄漏源优选顺序（关阀断料等）是针对多米诺效应中初始泄漏的处置策略。"
+          }
+        }
+      ],
+      "semantic_profile": {
+        "core_terms": [
+          "多米诺效应"
+        ],
+        "function_tag": "mechanism_description",
+        "abstract": "初始事故导致邻近装置连锁失效的效应"
+      }
     },
     {
       "title": "山地灾害",
@@ -273,10 +591,43 @@
         "hierarchy": null,
         "comparison_tables": []
       },
-      "knowledge_interfaces": [
-        "→ 构成灾害链的山地灾害的同一性：它们共享能量和物质条件",
-        "→ 构成灾害链的山地灾害的差异性：各自有独特的触发机制"
-      ]
+      "relations": [
+        {
+          "targetId": "构成灾害链的山地灾害的同一性",
+          "type": "expand",
+          "label": "同一性揭示山地灾害的共性特征",
+          "proof": {
+            "shared_entities": [
+              "山地灾害"
+            ],
+            "intermediate_concepts": [
+              "山地灾害"
+            ],
+            "reasoning": "该卡片分析山地灾害在能量、物质条件上的同一性。"
+          }
+        },
+        {
+          "targetId": "构成灾害链的山地灾害的差异性",
+          "type": "expand",
+          "label": "差异性揭示山地灾害的个性特征",
+          "proof": {
+            "shared_entities": [
+              "山地灾害"
+            ],
+            "intermediate_concepts": [
+              "山地灾害"
+            ],
+            "reasoning": "该卡片分析山地灾害在能量、物质条件上的差异性。"
+          }
+        }
+      ],
+      "semantic_profile": {
+        "core_terms": [
+          "山地灾害"
+        ],
+        "function_tag": "mechanism_description",
+        "abstract": "山地环境与人类活动共同作用导致的灾害"
+      }
     },
     {
       "title": "灾害管理的7个阶段",
@@ -312,10 +663,29 @@
         "hierarchy": "```mermaid\nflowchart TB\n    Root[\"灾害管理的7个阶段\"]\n    Root --> N0[\"预防/防御\"]\n    Root --> N1[\"准备/备灾\"]\n    Root --> N2[\"灾害预警\"]\n    Root --> N3[\"灾害侵袭\"]\n    Root --> N4[\"响应\"]\n```",
         "comparison_tables": []
       },
-      "knowledge_interfaces": [
-        "→ 《国家应急预案》应急处置与救援：响应阶段的具体执行",
-        "→ 灾害生态机制：恢复阶段涉及的自然生态修复"
-      ]
+      "relations": [
+        {
+          "targetId": "《国家应急预案》应急处置与救援的主要环节",
+          "type": "expand",
+          "label": "国家应急预案环节是管理阶段的具体化",
+          "proof": {
+            "shared_entities": [
+              "灾害管理的7个阶段"
+            ],
+            "intermediate_concepts": [
+              "灾害管理周期"
+            ],
+            "reasoning": "国家应急预案的应急处置环节（信息报告、指挥等）对应于灾害管理的响应阶段。"
+          }
+        }
+      ],
+      "semantic_profile": {
+        "core_terms": [
+          "灾害管理周期"
+        ],
+        "function_tag": "process_flow",
+        "abstract": "预防、准备、预警、侵袭、响应、恢复、发展的闭环"
+      }
     },
     {
       "title": "灾害研究的信息反馈原理",
@@ -347,10 +717,47 @@
         "hierarchy": null,
         "comparison_tables": []
       },
-      "knowledge_interfaces": [
-        "→ 灾害生态机制：反馈机制是灾害生态的核心之一",
-        "→ 灾害形成机制：反馈是形成机制的组成部分"
-      ]
+      "relations": [
+        {
+          "targetId": "灾害的形成机制",
+          "type": "expand",
+          "label": "信息反馈原理揭示形成机制中的反馈作用",
+          "proof": {
+            "shared_entities": [
+              "灾害研究的信息反馈原理",
+              "灾害的形成机制"
+            ],
+            "intermediate_concepts": [
+              "系统动力学机制"
+            ],
+            "reasoning": "形成机制中的孕灾和成灾过程受反馈控制，信息反馈原理提供了分析框架。"
+          }
+        },
+        {
+          "targetId": "灾害发展过程的5个代表性机理",
+          "type": "apply",
+          "label": "信息反馈原理用于解释发展过程机理",
+          "proof": {
+            "shared_entities": [
+              "灾害研究的信息反馈原理",
+              "灾害发展过程的5个代表性机理"
+            ],
+            "intermediate_concepts": [
+              "系统动力学机制",
+              "灾害形成过程"
+            ],
+            "reasoning": "5个机理（转化、蔓延等）中蕴含反馈机制，信息反馈原理帮助理解其动态。"
+          }
+        }
+      ],
+      "semantic_profile": {
+        "core_terms": [
+          "信息反馈与控制",
+          "系统动力学机制"
+        ],
+        "function_tag": "mechanism_description",
+        "abstract": "反馈决定灾害系统的稳定或崩溃"
+      }
     },
     {
       "title": "灾害生态机制",
@@ -382,10 +789,79 @@
         "hierarchy": null,
         "comparison_tables": []
       },
-      "knowledge_interfaces": [
-        "→ 灾害研究的信息反馈原理：反馈是生态机制的核心驱动力",
-        "→ 灾害形成机制：生态机制是灾害形成的重要方面"
-      ]
+      "relations": [
+        {
+          "targetId": "灾害群、灾害链、灾害遭遇的异同",
+          "type": "apply",
+          "label": "生态机制解释灾害聚集模式的生态特征",
+          "proof": {
+            "shared_entities": [
+              "灾害生态机制",
+              "灾害群、灾害链、灾害遭遇的异同"
+            ],
+            "intermediate_concepts": [
+              "灾害生态机制",
+              "灾害链与群"
+            ],
+            "reasoning": "灾害生态机制包括反馈机制、放大机制等，与灾害群、链的形成有关。"
+          }
+        },
+        {
+          "targetId": "应对灾害链的策略",
+          "type": "apply",
+          "label": "生态机制为断链策略提供理论依据",
+          "proof": {
+            "shared_entities": [
+              "灾害生态机制",
+              "应对灾害链的策略"
+            ],
+            "intermediate_concepts": [
+              "灾害生态机制",
+              "灾害链与群"
+            ],
+            "reasoning": "应对策略中的断链、削弱等基于对生态机制中反馈和放大规律的认识。"
+          }
+        },
+        {
+          "targetId": "构成灾害链的山地灾害的同一性",
+          "type": "apply",
+          "label": "生态机制解释山地灾害同一性的生态原因",
+          "proof": {
+            "shared_entities": [
+              "灾害生态机制",
+              "构成灾害链的山地灾害的同一性"
+            ],
+            "intermediate_concepts": [
+              "灾害生态机制",
+              "灾害链与群"
+            ],
+            "reasoning": "山地灾害的同一性（能量、物质条件）与生态机制中的能量流动和物质循环有关。"
+          }
+        },
+        {
+          "targetId": "构成灾害链的山地灾害的差异性",
+          "type": "apply",
+          "label": "生态机制解释山地灾害差异性的生态原因",
+          "proof": {
+            "shared_entities": [
+              "灾害生态机制",
+              "构成灾害链的山地灾害的差异性"
+            ],
+            "intermediate_concepts": [
+              "灾害生态机制",
+              "灾害链与群"
+            ],
+            "reasoning": "能量条件的差异导致不同山地灾害类型，生态机制中的正负反馈差异也起作用。"
+          }
+        }
+      ],
+      "semantic_profile": {
+        "core_terms": [
+          "灾害生态机制"
+        ],
+        "function_tag": "mechanism_description",
+        "abstract": "灾害与生态环境的交互规律，含反馈和放大机制"
+      }
     },
     {
       "title": "灾害群、灾害链、灾害遭遇的异同",
@@ -423,10 +899,60 @@
           "| 各灾种独立性 | 相互独立 | 相互依存 | 相互独立 |"
         ]
       },
-      "knowledge_interfaces": [
-        "→ 灾害链：从因果角度到灾害聚集模式的对比",
-        "→ 应对灾害链的策略：不同模式的应对方式不同"
-      ]
+      "relations": [
+        {
+          "targetId": "应对灾害链的策略",
+          "type": "expand",
+          "label": "辨析异同后自然引出应对策略",
+          "proof": {
+            "shared_entities": [
+              "灾害群、灾害链、灾害遭遇的异同",
+              "应对灾害链的策略"
+            ],
+            "intermediate_concepts": [
+              "灾害链与群"
+            ],
+            "reasoning": "理解三者异同有助于针对灾害链制定有效策略。"
+          }
+        },
+        {
+          "targetId": "构成灾害链的山地灾害的同一性",
+          "type": "expand",
+          "label": "同一性对比是异同分析的一部分",
+          "proof": {
+            "shared_entities": [
+              "灾害群、灾害链、灾害遭遇的异同",
+              "构成灾害链的山地灾害的同一性"
+            ],
+            "intermediate_concepts": [
+              "灾害链与群"
+            ],
+            "reasoning": "同一性卡片提供灾害链内部的共性特征，有助于辨析。"
+          }
+        },
+        {
+          "targetId": "构成灾害链的山地灾害的差异性",
+          "type": "expand",
+          "label": "差异性对比是异同分析的一部分",
+          "proof": {
+            "shared_entities": [
+              "灾害群、灾害链、灾害遭遇的异同",
+              "构成灾害链的山地灾害的差异性"
+            ],
+            "intermediate_concepts": [
+              "灾害链与群"
+            ],
+            "reasoning": "差异性卡片提供灾害链内部的个性特征，有助于辨析。"
+          }
+        }
+      ],
+      "semantic_profile": {
+        "core_terms": [
+          "灾害链与群"
+        ],
+        "function_tag": "comparison_analysis",
+        "abstract": "辨析三种灾害聚集模式的本质区别"
+      }
     },
     {
       "title": "灾害的形成机制",
@@ -458,10 +984,31 @@
         "hierarchy": null,
         "comparison_tables": []
       },
-      "knowledge_interfaces": [
-        "→ 灾害系统动力学机制：形成机制是动力学的具体化",
-        "→ 灾害生态机制：成灾过程涉及生态交互"
-      ]
+      "relations": [
+        {
+          "targetId": "灾害发展过程的5个代表性机理",
+          "type": "apply",
+          "label": "形成机制具体化为5个发展机理",
+          "proof": {
+            "shared_entities": [
+              "灾害的形成机制",
+              "灾害发展过程的5个代表性机理"
+            ],
+            "intermediate_concepts": [
+              "系统动力学机制",
+              "灾害形成过程"
+            ],
+            "reasoning": "形成机制包含孕灾和成灾过程，5个机理是这些过程在灾害发展中的典型模式。"
+          }
+        }
+      ],
+      "semantic_profile": {
+        "core_terms": [
+          "系统动力学机制"
+        ],
+        "function_tag": "mechanism_description",
+        "abstract": "孕灾过程与成灾过程的耦合"
+      }
     },
     {
       "title": "灾害发展过程的5个代表性机理",
@@ -494,10 +1041,14 @@
         "hierarchy": "```mermaid\nflowchart TB\n    Root[\"灾害发展过程的5个代表性机理\"]\n    Root --> N0[\"转化机理\"]\n    Root --> N1[\"蔓延机理\"]\n    Root --> N2[\"衍生机理\"]\n    Root --> N3[\"耦合机理\"]\n    Root --> N4[\"突变机理\"]\n```",
         "comparison_tables": []
       },
-      "knowledge_interfaces": [
-        "→ 灾害链：衍生和耦合是灾害链的形成机理",
-        "→ 灾害形成机制：五种机理是形成机制的具体表现"
-      ]
+      "relations": [],
+      "semantic_profile": {
+        "core_terms": [
+          "灾害形成过程"
+        ],
+        "function_tag": "mechanism_description",
+        "abstract": "转化、蔓延、放大、爆发、衰减五种发展模式"
+      }
     },
     {
       "title": "应对灾害链的策略",
@@ -531,10 +1082,46 @@
         "hierarchy": null,
         "comparison_tables": []
       },
-      "knowledge_interfaces": [
-        "→ 灾害链：策略针对的是链的不同环节",
-        "→ 海因里希因果连锁理论：理论模型为断链提供依据"
-      ]
+      "relations": [
+        {
+          "targetId": "构成灾害链的山地灾害的同一性",
+          "type": "expand",
+          "label": "同一性为策略提供共性依据",
+          "proof": {
+            "shared_entities": [
+              "应对灾害链的策略",
+              "构成灾害链的山地灾害的同一性"
+            ],
+            "intermediate_concepts": [
+              "灾害链与群"
+            ],
+            "reasoning": "了解山地灾害的同一性有助于制定普适性断链或削弱策略。"
+          }
+        },
+        {
+          "targetId": "构成灾害链的山地灾害的差异性",
+          "type": "expand",
+          "label": "差异性为策略提供针对性依据",
+          "proof": {
+            "shared_entities": [
+              "应对灾害链的策略",
+              "构成灾害链的山地灾害的差异性"
+            ],
+            "intermediate_concepts": [
+              "灾害链与群"
+            ],
+            "reasoning": "差异性要求策略因灾制宜。"
+          }
+        }
+      ],
+      "semantic_profile": {
+        "core_terms": [
+          "断链减灾策略",
+          "灾害链与群"
+        ],
+        "function_tag": "practical_guideline",
+        "abstract": "断链、削弱、转移、规避、接受五种策略"
+      }
     },
     {
       "title": "海因里希因果连锁理论模型",
@@ -568,10 +1155,61 @@
         "hierarchy": null,
         "comparison_tables": []
       },
-      "knowledge_interfaces": [
-        "→ 轨迹交叉理论：对海因里希模型的补充和完善",
-        "→ 多米诺效应：物理领域的多米诺与事故多米诺类比"
-      ]
+      "relations": [
+        {
+          "targetId": "轨迹交叉理论",
+          "type": "expand",
+          "label": "两种事故致因理论互补对比",
+          "proof": {
+            "shared_entities": [
+              "海因里希因果连锁理论模型",
+              "轨迹交叉理论"
+            ],
+            "intermediate_concepts": [
+              "事故因果理论"
+            ],
+            "reasoning": "两者都属于事故致因理论，但海因里希强调人的因素连锁，轨迹交叉强调人物时空交汇。"
+          }
+        },
+        {
+          "targetId": "多米诺效应的机理分析",
+          "type": "apply",
+          "label": "因果连锁理论用于解释多米诺效应",
+          "proof": {
+            "shared_entities": [
+              "海因里希因果连锁理论模型",
+              "多米诺效应的机理分析"
+            ],
+            "intermediate_concepts": [
+              "事故因果理论",
+              "多米诺效应"
+            ],
+            "reasoning": "海因里希的多米诺骨牌模型与化工多米诺效应在连锁思想上一致。"
+          }
+        },
+        {
+          "targetId": "泄漏源方案优选的一般顺序",
+          "type": "expand",
+          "label": "理论模型为泄漏源处置提供因果思路",
+          "proof": {
+            "shared_entities": [
+              "海因里希因果连锁理论模型",
+              "泄漏源方案优选的一般顺序"
+            ],
+            "intermediate_concepts": [
+              "事故因果理论"
+            ],
+            "reasoning": "泄漏源作为初始原因，优选顺序旨在切断因果链。"
+          }
+        }
+      ],
+      "semantic_profile": {
+        "core_terms": [
+          "事故因果理论"
+        ],
+        "function_tag": "mechanism_description",
+        "abstract": "事故是一串多米诺骨牌的连锁"
+      }
     },
     {
       "title": "轨迹交叉理论",
@@ -603,10 +1241,46 @@
         "hierarchy": null,
         "comparison_tables": []
       },
-      "knowledge_interfaces": [
-        "→ 海因里希因果连锁理论：轨迹交叉是其重要的理论补充",
-        "→ 化工多米诺效应分析流程：化工场景中人的操作与设备状态"
-      ]
+      "relations": [
+        {
+          "targetId": "多米诺效应的机理分析",
+          "type": "apply",
+          "label": "轨迹交叉理论用于分析多米诺效应中人物因素",
+          "proof": {
+            "shared_entities": [
+              "轨迹交叉理论",
+              "多米诺效应的机理分析"
+            ],
+            "intermediate_concepts": [
+              "事故因果理论",
+              "多米诺效应"
+            ],
+            "reasoning": "多米诺效应中人的不安全行为和物的不安全状态交叉导致事故蔓延。"
+          }
+        },
+        {
+          "targetId": "泄漏源方案优选的一般顺序",
+          "type": "expand",
+          "label": "轨迹交叉理论指导泄漏源控制",
+          "proof": {
+            "shared_entities": [
+              "轨迹交叉理论",
+              "泄漏源方案优选的一般顺序"
+            ],
+            "intermediate_concepts": [
+              "事故因果理论"
+            ],
+            "reasoning": "泄漏源控制关注物的不安全状态，轨迹交叉强调消除人物交叉。"
+          }
+        }
+      ],
+      "semantic_profile": {
+        "core_terms": [
+          "事故因果理论"
+        ],
+        "function_tag": "mechanism_description",
+        "abstract": "事故是人的不安全行为与物的不安全状态交叉"
+      }
     },
     {
       "title": "化工多米诺效应分析的一般流程",
@@ -644,10 +1318,30 @@
         "hierarchy": null,
         "comparison_tables": []
       },
-      "knowledge_interfaces": [
-        "→ 多米诺效应：流程是用来分析多米诺效应的",
-        "→ 多米诺效应的机理分析：流程中需要机理分析作为基础"
-      ]
+      "relations": [
+        {
+          "targetId": "泄漏源方案优选的一般顺序",
+          "type": "expand",
+          "label": "分析流程中的泄漏源处置策略",
+          "proof": {
+            "shared_entities": [
+              "化工多米诺效应分析的一般流程",
+              "泄漏源方案优选的一般顺序"
+            ],
+            "intermediate_concepts": [
+              "化工多米诺分析流程"
+            ],
+            "reasoning": "泄漏源优选顺序是化工多米诺分析中后果缓解的一部分。"
+          }
+        }
+      ],
+      "semantic_profile": {
+        "core_terms": [
+          "化工多米诺分析流程"
+        ],
+        "function_tag": "process_flow",
+        "abstract": "九步系统评估化工多米诺风险"
+      }
     },
     {
       "title": "多米诺效应的机理分析",
@@ -679,10 +1373,31 @@
         "hierarchy": "```mermaid\nflowchart TB\n    Root[\"多米诺效应的机理分析\"]\n    Root --> N0[\"初始事故场景\"]\n    Root --> N1[\"扩展因子一\"]\n    Root --> N2[\"扩展因子二\"]\n    Root --> N3[\"扩展因子三\"]\n    Root --> N4[\"链式事件\"]\n```",
         "comparison_tables": []
       },
-      "knowledge_interfaces": [
-        "→ 化工多米诺效应分析流程：机理是流程中后果分析的基础",
-        "→ 海因里希因果连锁理论：事故链的概念在物理世界的映射"
-      ]
+      "relations": [
+        {
+          "targetId": "泄漏源方案优选的一般顺序",
+          "type": "apply",
+          "label": "机理分析指导泄漏源优选顺序",
+          "proof": {
+            "shared_entities": [
+              "多米诺效应的机理分析",
+              "泄漏源方案优选的一般顺序"
+            ],
+            "intermediate_concepts": [
+              "多米诺效应",
+              "化工多米诺分析流程"
+            ],
+            "reasoning": "理解扩展因子（热辐射、冲击波等）有助于选择最有效的泄漏源处置方案。"
+          }
+        }
+      ],
+      "semantic_profile": {
+        "core_terms": [
+          "多米诺效应"
+        ],
+        "function_tag": "mechanism_description",
+        "abstract": "热辐射、冲击波、碎片是三大扩展因子"
+      }
     },
     {
       "title": "《国家应急预案》应急处置与救援的主要环节",
@@ -717,10 +1432,15 @@
         "hierarchy": null,
         "comparison_tables": []
       },
-      "knowledge_interfaces": [
-        "→ 灾害管理的7个阶段：响应阶段的具体化",
-        "→ 灾害事故应急处置：处置措施的实践应用"
-      ]
+      "relations": [],
+      "semantic_profile": {
+        "core_terms": [
+          "国家应急预案体系",
+          "灾害管理周期"
+        ],
+        "function_tag": "process_flow",
+        "abstract": "先期处置、信息报告、指挥、发布等四环联动"
+      }
     },
     {
       "title": "Na-tech事件的演化规律",
@@ -752,10 +1472,30 @@
         "hierarchy": null,
         "comparison_tables": []
       },
-      "knowledge_interfaces": [
-        "→ Na-tech事件：规律是Na-tech事件的动态描述",
-        "→ 灾害链：Na-tech演化是灾害链在技术领域的典型表现"
-      ]
+      "relations": [
+        {
+          "targetId": "Na-tech事件定量风险评估的流程",
+          "type": "expand",
+          "label": "演化规律是风险评估的基础",
+          "proof": {
+            "shared_entities": [
+              "Na-tech事件的演化规律",
+              "Na-tech事件定量风险评估的流程"
+            ],
+            "intermediate_concepts": [
+              "Na-tech事件"
+            ],
+            "reasoning": "风险评估需要基于演化规律识别触发、耦合等阶段的风险点。"
+          }
+        }
+      ],
+      "semantic_profile": {
+        "core_terms": [
+          "Na-tech事件"
+        ],
+        "function_tag": "mechanism_description",
+        "abstract": "触发-耦合-扩散-衰减四阶段递进规律"
+      }
     },
     {
       "title": "Na-tech事件定量风险评估的流程",
@@ -787,10 +1527,14 @@
         "hierarchy": null,
         "comparison_tables": []
       },
-      "knowledge_interfaces": [
-        "→ Na-tech事件的演化规律：风险评估需要基于演化规律",
-        "→ 灾害事故应急处置：评估结果指导应急处置"
-      ]
+      "relations": [],
+      "semantic_profile": {
+        "core_terms": [
+          "Na-tech事件"
+        ],
+        "function_tag": "process_flow",
+        "abstract": "四步定量评估自然-技术风险"
+      }
     },
     {
       "title": "泄漏源方案优选的一般顺序",
@@ -824,10 +1568,15 @@
         "hierarchy": null,
         "comparison_tables": []
       },
-      "knowledge_interfaces": [
-        "→ 化工多米诺效应分析流程：泄漏是多米诺效应的初始场景",
-        "→ 灾害事故应急处置：泄漏处置是应急处置的具体技术"
-      ]
+      "relations": [],
+      "semantic_profile": {
+        "core_terms": [
+          "化工多米诺分析流程",
+          "事故因果理论"
+        ],
+        "function_tag": "practical_guideline",
+        "abstract": "关阀断料、堵漏、倒罐、注水、放空顺序"
+      }
     },
     {
       "title": "构成灾害链的山地灾害的同一性",
@@ -866,10 +1615,32 @@
           "| 触发条件 | 降雨/地震/人类活动是共同触发因素 |"
         ]
       },
-      "knowledge_interfaces": [
-        "→ 山地灾害：同一性揭示了山地灾害的内在联系",
-        "→ 构成灾害链的山地灾害的差异性：同一与差异对比理解"
-      ]
+      "relations": [
+        {
+          "targetId": "构成灾害链的山地灾害的差异性",
+          "type": "expand",
+          "label": "同一性与差异性形成完整对比",
+          "proof": {
+            "shared_entities": [
+              "构成灾害链的山地灾害的同一性",
+              "构成灾害链的山地灾害的差异性"
+            ],
+            "intermediate_concepts": [
+              "山地灾害",
+              "灾害链与群"
+            ],
+            "reasoning": "两者共同构成对山地灾害在灾害链中角色的全面认识。"
+          }
+        }
+      ],
+      "semantic_profile": {
+        "core_terms": [
+          "山地灾害",
+          "灾害链与群"
+        ],
+        "function_tag": "comparison_analysis",
+        "abstract": "山地灾害在能量、物质条件上的共性"
+      }
     },
     {
       "title": "构成灾害链的山地灾害的差异性",
@@ -907,10 +1678,15 @@
           "| 含水量要求 | 低 | 高(40-60%) | 几乎无 |"
         ]
       },
-      "knowledge_interfaces": [
-        "→ 山地灾害：差异性揭示了不同山地灾害的独特特征",
-        "→ 构成灾害链的山地灾害的同一性：差异与同一对比理解"
-      ]
+      "relations": [],
+      "semantic_profile": {
+        "core_terms": [
+          "山地灾害",
+          "灾害链与群"
+        ],
+        "function_tag": "comparison_analysis",
+        "abstract": "能量条件差异决定山地灾害类型"
+      }
     }
   ]
 }

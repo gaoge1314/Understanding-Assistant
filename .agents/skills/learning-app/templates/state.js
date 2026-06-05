@@ -25,7 +25,9 @@
     userSettings: { dailyWordQuota: 500, dailyQuotaLevel: 'B', hintCount: 2 },
     recitationGroups: [],
     isLocked: false,
-    groupsExpanded: {}
+    groupsExpanded: {},
+    sidebarCollapsed: false,
+    rightbarCollapsed: false
   };
   const INTERVALS = [0, 1, 3, 7, 21, 60, 180];
   const MAX_LEVEL = 6;
@@ -55,7 +57,8 @@
                     answer: st.folded.answer !== false,
                     path: st.folded.path !== false,
                     memory: st.folded.memory !== false,
-                    interface: st.folded.interface !== false
+                    interface: st.folded.interface !== false,
+                    relation: true
                   };
                   delete st.folded;
                 }
@@ -102,8 +105,8 @@
     var s = window.__APP__.state;
     if (!s.cardStates[title]) {
       s.cardStates[title] = {
-        expanded: { answer: true, path: true, memory: true, interface: true },
-        myUnderstanding: '',
+        expanded: { answer: true, path: true, memory: true, interface: true, relation: true },
+      customVersions: { myUnderstanding: '',
         myCreation: '',
         customVersions: {
           answer: { content: '', selectedSource: 'original' },

@@ -59,13 +59,13 @@ class KnowledgeInterface:
 @dataclass
 class KnowledgeCard:
     title: str
-    card_id: str = ""                 # ★ 新增：唯一标识，由标题生成
+    card_id: str = ""                 # ★ 唯一标识，由标题生成
 
     # ① 答案
     answer: str = ""
     answer_source: str = ""  # "user_specified" | "ai_extracted" | "ai_generated"
 
-    # ② 理解路径（现有字段重组）
+    # ② 理解路径
     core_principle: str = ""
     problem_solved: str = ""
     decomposition: List[str] = field(default_factory=list)
@@ -76,8 +76,14 @@ class KnowledgeCard:
     # ③ 记忆技巧
     memory_techniques: Optional[MemoryTechniques] = None
 
-    # ④ 知识接口（★ 改为结构化列表）
+    # ④ 知识接口（后向兼容，新数据由 relations 替代）
     knowledge_interfaces: List[KnowledgeInterface] = field(default_factory=list)
+
+    # ⑤ 关联（替代 knowledge_interfaces）
+    relations: List[dict] = field(default_factory=list)
+
+    # 语义画像（中间概念层产物）
+    semantic_profile: dict = field(default_factory=dict)
 
     def to_dict(self) -> dict:
         return {
@@ -93,6 +99,8 @@ class KnowledgeCard:
             "judgment_conclusion": self.judgment_conclusion,
             "memory_techniques": self.memory_techniques.to_dict() if self.memory_techniques else None,
             "knowledge_interfaces": [k.to_dict() for k in self.knowledge_interfaces],
+            "relations": self.relations,
+            "semantic_profile": self.semantic_profile,
         }
 
     @classmethod
@@ -112,6 +120,10 @@ class KnowledgeCard:
         # 知识接口：兼容旧格式（List[str]）和新格式（List[dict]）
         raw_ifaces = d.get("knowledge_interfaces", [])
         card.knowledge_interfaces = [KnowledgeInterface.from_dict(item) for item in raw_ifaces]
+        # 关联（v5+ 新字段）
+        card.relations = d.get("relations", [])
+        # 语义画像（v5+ 新字段）
+        card.semantic_profile = d.get("semantic_profile", {})
         return card
 
 

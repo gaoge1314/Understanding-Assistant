@@ -2,15 +2,17 @@
 learning-app 生成脚本：读取卡包 JSON → 生成交互式 HTML 应用
 
 用法：
-    python generate_app.py <json_path> [--output-dir <path>]
+    python generate_app.py <json_path> [--output-dir <path>] [--build-relations] [--rag-dir <path>]
 
 说明：
     - json_path: 卡包 JSON 文件路径（必填）
     - output-dir: 输出目录（可选，默认 output/card-app/{subject}/）
+    - build-relations: 先运行关系构建流水线，再生成应用（可选）
+    - rag-dir: LightRAG 存储目录（--build-relations 时使用）
 """
 
+import asyncio
 import json
-import os
 import re
 import shutil
 import sys
@@ -243,9 +245,47 @@ def generate_blanks(card: dict) -> list:
     return blanks
 
 
-def generate_app(json_path: str, output_dir: str | None = None) -> str:
-    """从卡包 JSON 生成 HTML 应用"""
+async def generate_app(
+    json_path: str,
+    output_dir: str | None = None,
+    build_relations: bool = False,
+    rag_dir: str | None = None,
+) -> str:
+    """从卡包 JSON 生成 HTML 应用
+
+    Args:
+        json_path: 卡包 JSON 文件路径
+        output_dir: 输出目录（可选，默认 output/card-app/{subject}/）
+        build_relations: 是否先运行关系构建流水线
+        rag_dir: LightRAG 存储目录（build_relations=True 时使用）
+    """
     json_path = Path(json_path)
+
+    # 0. 可选：先运行关系构建流水线
+    if build_relations:
+        print("=" * 60)
+        print("[前置步骤] 运行中间概念层关系构建流水线...")
+        print("=" * 60)
+
+        # 尝试导入 build_relations，优先从项目根目录
+        project_root = Path(__file__).resolve().parent.parent.parent.parent.parent
+        if str(project_root) not in sys.path:
+            sys.path.insert(0, str(project_root))
+        from scripts.build_relations import build_relations as run_build_relations
+
+        if rag_dir is None:
+            rag_dir = str(Path(json_path).parent.parent.parent / "rag_storage")
+
+        await run_build_relations(
+            input_path=str(json_path),
+            output_path=str(json_path),
+            rag_dir=rag_dir,
+            output_dir=str(json_path.parent),
+        )
+        print("=" * 60)
+        print("[前置步骤] 关系构建完成，继续生成应用")
+        print("=" * 60)
+
     if not json_path.exists():
         raise FileNotFoundError(f"卡包 JSON 文件不存在：{json_path}")
 
@@ -299,7 +339,7 @@ def generate_app(json_path: str, output_dir: str | None = None) -> str:
     if not templates_dir.exists():
         raise FileNotFoundError(f"模板目录不存在：{templates_dir}")
 
-    for filename in ["index.html", "style.css", "state.js", "sidebar.js", "card-view.js", "flashcard.js", "plan.js", "reorder.js", "fill-blank.js", "app.js"]:
+    for filename in ["index.html", "style.css", "state.js", "collapse.js", "sidebar.js", "card-view.js", "flashcard.js", "plan.js", "reorder.js", "fill-blank.js", "app.js"]:
         src = templates_dir / filename
         dst = output_dir / filename
         if src.exists():
@@ -327,20 +367,36 @@ def generate_app(json_path: str, output_dir: str | None = None) -> str:
 
 def main():
     if len(sys.argv) < 2:
-        print("用法：python generate_app.py <json_path> [--output-dir <path>]")
-        print("示例：python generate_app.py ../../output/json/灾害学_v1.json")
+        print("用法：python generate_app.py <json_path> [选项]")
+        print("选项：")
+        print("  --output-dir <path>    输出目录（可选）")
+        print("  --build-relations      先运行关系构建流水线（可选）")
+        print("  --rag-dir <path>       LightRAG 存储目录（--build-relations 时使用）")
+        print("示例：")
+        print("  python generate_app.py ../../output/json/灾害学_v5.json")
+        print("  python generate_app.py ../../output/json/灾害学_v5.json --build-relations")
         sys.exit(1)
 
     json_path = sys.argv[1]
     output_dir = None
+    build_relations_flag = False
+    rag_dir = None
 
     if "--output-dir" in sys.argv:
         idx = sys.argv.index("--output-dir")
         if idx + 1 < len(sys.argv):
             output_dir = sys.argv[idx + 1]
 
+    if "--build-relations" in sys.argv:
+        build_relations_flag = True
+
+    if "--rag-dir" in sys.argv:
+        idx = sys.argv.index("--rag-dir")
+        if idx + 1 < len(sys.argv):
+            rag_dir = sys.argv[idx + 1]
+
     try:
-        generate_app(json_path, output_dir)
+        asyncio.run(generate_app(json_path, output_dir, build_relations_flag, rag_dir))
     except Exception as e:
         print(f"❌ 生成失败：{e}")
         sys.exit(1)

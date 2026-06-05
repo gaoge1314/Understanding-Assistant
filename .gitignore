@@ -35,6 +35,20 @@ output/processed/
 !output/json/灾害学_v5.json
 !output/markdown/灾害学_理解路径卡包.md
 
+# 安全：禁止上传真实环境变量和密钥
+.env
+!.env.example
+!.env.development
+*.key
+credentials*
+secrets*
+
+# LightRAG 本地存储
+rag_storage/
+
 # 临时文件
 *临时/
 test_*
+
+# 日志
+*.log

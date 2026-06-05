@@ -4,7 +4,7 @@
 
 | 术语 | 定义 |
 |:---|:---|
-| **知识卡牌** | 单张知识卡片，由五部分构成：①内容类型标签（颜色编码） ②答案 ③理解路径 ④记忆技巧 ⑤知识接口。内容类型（A/B/C/D/mixed）由诊断 Skill 自动判断，在卡包 JSON 中以 `content_type` 字段存储，前端根据类型渲染不同颜色 |
+| **知识卡牌** | 单张知识卡片，由五部分构成：①内容类型标签（颜色编码） ②答案 ③理解路径 ④记忆技巧 ⑤关联（径向图）。内容类型（A/B/C/D/mixed）由诊断 Skill 自动判断，在卡包 JSON 中以 `content_type` 字段存储，前端根据类型渲染不同颜色 |
 | **理解路径** | 知识卡牌的第二板块，展示知识的内在逻辑（核心原理、分解理解、典型判断情境） |
 | **知识卡包** | 一组知识卡牌的集合，对应一份学习材料 |
 | **学习应用** | 由 learning-app Agent 从卡包 JSON 生成的交互式 HTML 应用 |
@@ -29,7 +29,12 @@
 | **转录本处理器** | 预处理子 Skill，将录音文字版/笔记清洗重组为结构化文本 |
 | **答案** | 考试默写内容，学生需要直接背诵并在答题时输出的内容。来源可为用户指定、AI 从资料提取或 AI 自动生成 |
 | **记忆技巧** | AI 从卡片内容自动生成的三类记忆辅助：关键词（纯术语列表）、记忆辅助（口诀/类比/意象/解释）、层级关系图（Mermaid flowchart）、对比表格（Markdown 表格）。关键词支持用户在学习视图中直接编辑修改 |
-| **知识接口** | 知识点之间的关联链接，位于卡片末尾，标注关系性质（如"我是 X 的前提"）。链接可点击跳转到对应卡片 |
+| **知识接口** | （已升级为"关联"）知识点之间的关联链接，位于卡片末尾，标注关系性质。链接可点击跳转到对应卡片 |
+| **关联** | 替代"知识接口"的升级版，位于卡片第⑤面板。使用径向图展示当前卡片与关联卡片的关系，每条关系含类型（展开/对比/概括/理论/实践/前置/后继）、描述文本和证明链（proof） |
+| **语义画像 (semantic_profile)** | 每张卡片固化的语义元数据字段，包含核心主题词（core_terms）、功能标签（function_tag）、一句话抽象概括（abstract）。用于卡片与中间概念的语义对接 |
+| **中间概念 (intermediate_concept)** | LightRAG 微观实体与知识卡片之间的语义过渡层。由 LLM 将图谱实体聚类为 20-40 个高层次的抽象概念（如"能量传递机制"），每张卡片绑定到 1-N 个中间概念，通过共享概念推导卡片间关系 |
+| **证明链 (proof)** | 关系中记录推导依据的字段，包含 shared_entities（共享实体）、intermediate_concepts（共享中间概念）、reasoning（推理过程）。用于在 UI 中展示"为什么这两张卡有关联" |
+| **面板折叠** | 左侧栏（sidebar）和右侧栏（rightbar）可独立折叠为窄条（32px），点击头部或边缘按钮触发，折叠状态存入 `AppState.state` 统一持久化 |
 | **学习应用** | 由 learning-app Agent 从卡包 JSON 生成的交互式 HTML 应用，含折叠面板、拖拽排序、概念重组等功能 |
 
 ## 架构决策
@@ -43,7 +48,7 @@
   - **卡片生成**（子 Skill）：知识点标题 + 对应内容 + 类型诊断 → 一张完整卡片（含理解路径 + 记忆技巧）
 - **内容类型颜色编码**：A（逻辑序列）蓝色、B（机制/机理）紫色、C（结构/模型）绿色、D（概念辨析）橙色、mixed 用对应颜色的渐变/分割（各占一半），应用于卡片背景
 - **记忆技巧字段**：`keywords`（纯术语列表）、`memory_aids`（口诀/类比/意象/解释）、`hierarchy`（层级图）、`comparison_tables`（对比表）
-- **Python 脚本形态**：封装为 MCP 工具，供 AI 自动调用（非手动运行）
+- **Python 脚本形态**：双入口设计——既可作为独立脚本手动运行（`python script.py`），也封装为模块函数供 `generate_app.py` 等编排脚本自动调用（非手工 MCP 调用）
 - **持久化**：`knowledge_store` 作为 MCP 工具，管理知识点清单和版本
 - **格式输出**：`card_generator` 作为 MCP 工具，输出 Markdown + JSON，同时校验卡片字段完整性
 - **增量更新**：保存中间产物知识点清单，版本号递增
@@ -74,6 +79,13 @@ c:\Users\12977\Desktop\jiyikapian\
 │   ├── knowledge_store.py               # MCP 工具：持久化读写 + 版本管理
 │   ├── card_generator.py                # 输出格式化：generate_markdown() / generate_json() / generate_knowledge_graph()
 │   ├── validator.py                     # 卡包数据校验器：validate_card_pack() + ValidationError 异常
+│   ├── build_relations.py               # 中间概念层流水线：LightRAG 实体 → 中间概念 → 卡片绑定 → 关系推导 + proof
+│   ├── extract_relations.py             # 轻量关系提取：LLM 逐对分析卡片关系（无需 LightRAG）
+│   ├── run_lightrag_chinese.py          # 运行 LightRAG 中文索引
+│   ├── rebuild_rag.py                   # 重建 LightRAG 索引
+│   ├── check_rag_result.py              # 临时：检查 LightRAG 图谱输出
+│   ├── diagnose_matching.py             # 临时：诊断卡片标题与实体名匹配问题
+│   ├── migrate_old_pack.py              # 迁移旧版卡包格式
 │   ├── requirements.txt                 # 依赖
 │   └── setup.ps1                        # 初始化脚本
 ├── docs\
